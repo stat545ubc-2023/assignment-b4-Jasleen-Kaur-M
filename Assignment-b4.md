@@ -1,17 +1,11 @@
----
-title: "Assignment b4"
-author: "Jasleen Kaur"
-date: "2023-12-07"
-output: github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+Assignment b4
+================
+Jasleen Kaur
+2023-12-07
 
 Load the required packages
 
-```{r, message = FALSE}
+``` r
 library(janeaustenr)
 library(stringr)
 library(tidyverse)
@@ -24,12 +18,13 @@ library(stopwords)
 
 First, we convert the text into a dataframe
 
-```{r}
+``` r
 pride_df <- tibble(text = prideprejudice)
 ```
 
 Split the text into words and remove stop words
-```{r, message=FALSE}
+
+``` r
 pride_freq <- pride_df %>%
   unnest_tokens(word, text) %>%
   anti_join(stop_words)
@@ -37,15 +32,14 @@ pride_freq <- pride_df %>%
 
 Count the frequency of each word
 
-```{r}
+``` r
 word_counts <- pride_freq %>%
   count(word, sort = TRUE)
 ```
 
-
 Plotting the top 20 words
 
-```{r}
+``` r
 word_counts %>%
   slice_max(n = 20, order_by = n) %>%
   ggplot(aes(x = reorder(word, n), y = n)) +
@@ -54,9 +48,11 @@ word_counts %>%
   theme_minimal() +
   labs(xlab = " ", ylab = "Frequency", title = "Most common words in Pride and Prejudice")
 ```
-# Exercise 2
 
-```{r}
+![](Assignment-b4_files/figure-gfm/unnamed-chunk-5-1.png)<!-- --> \#
+Exercise 2
+
+``` r
 #' Convert words to custom Pig Latin
 #'
 #' This function takes a word as input and converts it to a custom version of Pig Latin.
@@ -110,13 +106,26 @@ pig_latin_converter <- function(word, suffix) {
 
 # Examples
 print(pig_latin_converter("hello", "-way"))
+```
+
+    ## [1] "NANA-way" "NANA-way"
+
+``` r
 # Returns: "ello-hway"
 
 print(pig_latin_converter("apple", "-xyz"))
+```
+
+    ## [1] "pplea-xyz"
+
+``` r
 # Returns: "pple-xyz"
 
 print(pig_latin_converter("school", "-123"))
-# Returns: "ools-ch123"
-
 ```
 
+    ## [1] "NANA-123" "NANA-123"
+
+``` r
+# Returns: "ools-ch123"
+```

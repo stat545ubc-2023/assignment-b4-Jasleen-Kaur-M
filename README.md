@@ -33,7 +33,8 @@ See examples in the R script or the rmarkdown file for how to use the `pig_latin
 
 - **R Script**: The main R script contains the code for both exercises.
 - **README**: You are currently reading the README file.
-- **Rmardown**: The Rmarkdown file with the outputs.
+- **Rmardown**: The Rmarkdown file.
+- **md file**: The markdown file with the outputs and examples.
 
 ## How to Run the Code
 
