@@ -8,7 +8,7 @@ Welcome to my R project focused on strings and functional programming.
 
 I chose the book "Pride and Prejudice" by Jane Austen, available through the `janeaustenr` package. The goal was to create a plot of the most common words in the book, removing stop words. I used `tidyverse`, `ggplot2`, `stringr` and `tidytext` functions and created a frequency plot to visualize the results.
 
-I also used the `stopwords` package to remove the pre-defined stop words.
+I also used the `stopwords` package to remove the pre-defined stop words. I have also used the `testthat` package to check the robustness of the function.
 
 ### Data Source
 
