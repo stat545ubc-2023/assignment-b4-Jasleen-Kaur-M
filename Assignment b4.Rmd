@@ -60,7 +60,7 @@ word_counts %>%
 #' Convert words to custom Pig Latin
 #'
 #' This function takes a word as input and converts it to a custom version of Pig Latin.
-#' The conversion involves rearranging the letters and adding a custom suffix.
+#' The conversion involves rearranging the letters based on a custom rule and adding a custom suffix.
 #'
 #' @param word A character string representing the word to be converted.
 #' @param suffix A custom suffix to be added to the rearranged word.
@@ -69,13 +69,13 @@ word_counts %>%
 #'
 #' @examples
 #' pig_latin_converter("hello", "-way")
-#' # Returns: "ello-hway"
+#' # Returns: "eello-way"
 #'
 #' pig_latin_converter("apple", "-xyz")
-#' # Returns: "pple-xyz"
+#' # Returns: "appl-xyz"
 #'
 #' pig_latin_converter("school", "-123")
-#' # Returns: "ools-ch123"
+#' # Returns: "oohool-123"
 #'
 #' @export
 pig_latin_converter <- function(word, suffix) {
@@ -94,12 +94,14 @@ pig_latin_converter <- function(word, suffix) {
 
   # Rearrange the letters based on the custom Pig Latin rules
   if (str_sub(word, 1, 1) %in% c("a", "e", "i", "o", "u")) {
-    # For words starting with vowels, move the first consonant or cluster to the end
-    rearranged_word <- paste0(str_sub(word, 2, nchar(word)), str_sub(word, 1, 1))
-  } else {
-    # For words starting with consonants, move all letters before the initial vowel to the end
-    vowel_position <- str_locate("[aeiou]", word)
-    rearranged_word <- paste0(str_sub(word, vowel_position, nchar(word)), str_sub(word, 1, vowel_position - 1))
+    # For words starting with vowels, reverse the letters
+    rearranged_word <- str_c(str_sub(word, str_length(word), 1), str_sub(word, 1, str_length(word) - 1))
+} else {
+    
+    # For words starting with consonants, move move the first consonant or cluster to the end
+    consonat_cluster <- str_extract(word, "[aeiou]+")
+    rearranged_word <- str_sub(word, str_length(consonat_cluster) + 1,  str_length(word)) %>% 
+      str_c(consonat_cluster, .)
   }
 
   # Add the custom suffix to the rearranged word
@@ -110,13 +112,13 @@ pig_latin_converter <- function(word, suffix) {
 
 # Examples
 print(pig_latin_converter("hello", "-way"))
-# Returns: "ello-hway"
+
 
 print(pig_latin_converter("apple", "-xyz"))
-# Returns: "pple-xyz"
+
 
 print(pig_latin_converter("school", "-123"))
-# Returns: "ools-ch123"
+
 
 ```
 

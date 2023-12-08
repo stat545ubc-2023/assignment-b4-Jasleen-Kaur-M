@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to my R project focused on strings and functional programming. In this project, I've completed two exercises using concepts and tools covered in class
+Welcome to my R project focused on strings and functional programming.
 
 ## Exercise 1: Most Common Words in a Book
 
@@ -12,7 +12,7 @@ I also used the `stopwords` package to remove the pre-defined stop words.
 
 ### Data Source
 
-The text was obtained from the janeaustenr package.
+The text was obtained from the `janeaustenr` package.
 
 ### Execution
 
